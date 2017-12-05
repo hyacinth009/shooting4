@@ -18,7 +18,7 @@ Rect    targetRect;     //!< ターゲットの矩形
 int     score;          //!< スコア
 
 
-// ゲーム開始時に呼ばれる関数です。
+// ゲーム開始時に呼ばれる関数です。 G_hw16a184　松本丈一郎
 void Start()
 {
     cloudPos = Vector2(-320, 100);
@@ -26,6 +26,7 @@ void Start()
     targetRect = Rect(80, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
+    PlayBGM("bgm_maoudamashii_8bit07.mp3");
 }
 
 // 1/60秒ごとに呼ばれる関数です。モデルの更新と画面の描画を行います。
@@ -43,7 +44,7 @@ void Update()
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
-            score += 1;         // スコアの加算
+            score += 100;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
         }
     }
@@ -67,9 +68,9 @@ void Update()
     // ターゲットの描画
     FillRect(targetRect, Color::red);
 
-    // スコアの描画
+    // スコアの描画 F_hw16a184　松本丈一郎
     SetFont("nicoca_v1.ttf", 20.0f);
-    DrawText(FormatString("%02d", score), Vector2(-319, 199), Color::black);
-    DrawText(FormatString("%02d", score), Vector2(-320, 200), Color::white);
+    DrawText(FormatString("%05d", score), Vector2(-319, 199), Color::black);
+    DrawText(FormatString("%05d", score), Vector2(-320, 200), Color::white);
 }
 

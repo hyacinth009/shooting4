@@ -72,8 +72,8 @@ void Update()
     FillRect(targetRect, Color::red);
 
     // スコアの描画
-    SetFont("nicoca_v1.ttf", 20.0f);
-    DrawText(FormatString("%02d", score), Vector2(-319, 199), Color::black);
-    DrawText(FormatString("%02d", score), Vector2(-320, 200), Color::white);
+    SetFont("nicoca_v1.ttf", 70.0f);//スコアのサイズを大きくする（実装：HW16A146　長杉星弥）
+    DrawText(FormatString("%02d", score), Vector2(-319, 150), Color::black);
+    DrawText(FormatString("%02d", score), Vector2(-320, 151), Color::white);
 }
 

@@ -54,6 +54,10 @@ void Update()
 
     // 雲の描画
     DrawImage("cloud1.png", cloudPos);
+    cloudPos.x += 3;          //雲を動かす（実装：HW16A146　長杉星弥）
+    if(cloudPos.x >320){
+        cloudPos.x = -500;
+    }
 
     // 弾の描画
     if (bulletPos.x > -999) {

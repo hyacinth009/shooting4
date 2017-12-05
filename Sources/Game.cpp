@@ -22,8 +22,8 @@ int     score;          //!< スコア
 void Start()
 {
     cloudPos = Vector2(-320, 100);
-    cannonPos = Vector2(-80, -150);
-    targetRect = Rect(80, -140, 40, 40);
+    cannonPos = Vector2(-310, -150);
+    targetRect = Rect(280, -140, 40, 40); //砲台位置移動　hw16a166 藤原　渉
     bulletPos.x = -999;
     score = 0;
     PlayBGM("bgm_maoudamashii_8bit07.mp3");
@@ -40,17 +40,21 @@ void Update()
 
     // 弾の移動
     if (bulletPos.x > -999) {
-        bulletPos.x += 10 * Time::deltaTime;
+        bulletPos.x += 1000 * Time::deltaTime;
 
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
             score += 100;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
+        }
+        else if(bulletPos.x > 300){//弾のリロード　hw16a166 藤原　渉
+                bulletPos.x = -999;
+            }
+
             
             PlaySound("se_maoudamashii_system27.mp3");//SEを再生する（実装：HW16A146　長杉星弥）
         }
-    }
 
     // 背景の描画
     Clear(Color::cyan);
